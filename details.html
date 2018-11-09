@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/details.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container_fluid">
+        <div class="top_title">
+            <p>
+                <a href="index.html" class="glyphicon glyphicon-menu-left">返回</a>
+                <span>厂家</span>
+            </p>
+        </div>
+        <!--内容详情-->
+        <div class="details_style">
+            <div class="title_style">广州富恒美美容设备有限公司</div>
+            <p>名称 <input type="text" value="广州富恒美美容设备有限公司"></p>
+            <p>地址 <input type="text" value="广州市白云区大朗十九社13栋二楼/环滘一横路盛旺工业园三号A栋5楼"></p>
+            <p>产品类型 <input type="text" placeholder="产品类型"></p>
+            <p>联系人 <input type="text"value="吴泉总"></p>
+           <p class="phone_mobel">
+               <input type="text" placeholder="手机" value="18688395479">
+               <button>拨号</button>
+           </p>
+            <p class="phone_gu">
+                <input type="text"placeholder="联系电话" value="020-23584787">
+                <button>拨号</button>
+            </p>
+            <p>助理 <input type="text"placeholder="助理姓名" value=""></p>
+            <p class="z_phone" class="display:flex">
+                <input type="text" placeholder="助理联系电话"value="">
+                <button>拨号</button>
+            </p>
+            <p class="bei_zu">
+                <input type="text"placeholder="备注">
+            </p>
+            <div class="bottom_bioji" style="display:none">
+                <p>标记为无效客户</p>
+                <ul>
+                    <li>标记为无效客户</li>
+                    <li>标记为有效客户</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="bootstrap.min.js"></script>
+<script>
+    $("button").click(function(){
+        $.ajax({
+            type:"post",
+            url:"http://meibanglai.cn/data/getChangjiaByPhone",
+            data:new FormData($("#form1").get(0)),
+            //强调: FormData中必须用DOM的form元素
+            processData:false,
+            contentType:false
+        }).then(data=>{
+            // document.write(data);
+            console.log(data);
+        })
+    })
+</script>
+</html>

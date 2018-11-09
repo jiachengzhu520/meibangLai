@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>DOM Tree</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <span id="s1">Hello</span>
+    <h1>标题一</h1>
+    <form id="formLogin"></form>
+    <script>
+//让以下代码在窗口加载完之后，才执行
+window.onload=function(){
+  var body=document.body;//获得body
+  //查看body的父节点
+  var parent=body.parentNode;//.parentElement
+  console.log(parent);//html
+  //查看body的所有直接子元素
+  var children=body.children;
+  console.log(children);//4个: span h1 form script
+  //查看body的第一个直接子元素
+  console.log(body.firstElementChild);
+  //查看body的最后一个直接子元素
+  console.log(body.lastElementChild);
+  //获得body所有直接子元素中第2个节点h1
+  var h1=children[1];
+  console.log(h1);
+  //获得h1的前一个兄弟元素
+  console.log(h1.previousElementSibling);//span
+  //获得h1的后一个兄弟元素
+  console.log(h1.nextElementSibling);//form
+}
+    </script>
+  </body>
+</html>

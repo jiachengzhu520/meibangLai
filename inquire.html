@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>美帮来-信息检索</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/inquire.css">
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <nav class="bar bar-tab">
+            <a class="external tab-item active" href="/modifyPassword.html">
+                <span class="icon icon-card"></span>
+                <span class="tab-label">修改密码</span>
+            </a>
+        </nav>
+
+        <div class="list-block inset">
+            <ul>
+                <li><a href="/specification.html" class="item-link list-button">查看说明</a></li>
+            </ul>
+        </div>
+
+        <div class="list-block inset">
+            <ul>
+                <li><a href="/mbl/view/sign.html?sign=9" data-url="" class="external item-link list-button">查看我标记过的用户(优质)</a></li>
+                <li><a href="/mbl/view/sign.html?sign=8" data-url="" class="external item-link list-button">查看我标记过的用户(有效)</a></li>
+                <li><a href="/mbl/view/sign.html?sign=1" data-url="" class="external item-link list-button">查看我标记过的用户(无效)</a></li>
+            </ul>
+        </div>
+        <div class="list-block inset">
+            <form action="/mbl/view/changjia.html" id="queryByAreaAndGenre">
+                <ul>
+
+                    <!-- <li class="item-link list-button"><input type="text" id='picker' placeholder="选择查看的客户" style="text-align: center;" /></li>
+                     <li><input type="text" id='area-picker' placeholder="请选择地区" style="text-align: center;" /></li>
+                    <li><a href="#" id="getTen" class="external item-link list-button">获取10个未查看客户</a></li> -->
+
+                    <li><div style="text-align: center;">请选择客户类型:</div>
+                        <select name="genre"  id="genre" onchange="getArea(this.value)" class="item-link list-button" style="width:160px;margin:auto" >
+                            <option value="0" selected="selected">----请选择----</option>
+                            <option value="1">生产厂家</option>
+                            <option value="2">全国代理商</option>
+                            <option value="3">美业店家</option>
+                            <option value="4">企业资质</option>
+                            <option value="5">云南专属</option>
+                        </select >
+                        <div style="text-align: center;">请选择地区:</div>
+                        <select name="area" id="area" class="item-link list-button"  style="width:160px;margin:auto" >
+                            <option>----请选择----</option>
+                        </select>
+                    </li>
+                    <li class="external item-link list-button"><a href="details.html" id="getTen" class="external item-link list-button">获取10个未查看客户</a></li>
+                </ul>
+            </form>
+            <div class="list-block inset">
+                <form action="/data/getChangjiaByPhone" id="queryByPhone" method="post">
+                    <ul>
+                        <li class="external item-link list-button"><a>请输入要查询的电话号码:</a></li>
+                        <li><div style="text-align: -webkit-center;"><input data-url="" class="external item-link list-button" name="phone"/></div></li>
+                        <li>
+                            <!--<a style="text-align: -webkit-center;">-->
+                                <a id="getByPhone" data-url="" class="external item-link list-button"   onclick="window.location='details.html'" style="margin-top:2px;font-weight:bold">查询</a>
+                            <!--</div>-->
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="//g.alicdn.com/msui/sm/0.6.2/js/sm-city-picker.min.js" charset="utf-8"></script>
+<script>
+    var areas = document.getElementById("area");
+    function getArea(genre){
+        //alert(genre);
+        if(genre !="0"){
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+
+                    //alert("1");
+                    var obj = JSON.parse(xmlhttp.responseText);
+                    //alert(obj.data);
+
+
+                    //alert(areas);
+                    areas.innerHTML = "";
+                    for(var i =0 ; i<obj.data.length ; i++){
+                        areas.innerHTML = areas.innerHTML + "<option value='"+obj.data[i]+"'><div style='text-align: center;'>"+obj.data[i]+"</div></option>"
+                    }
+
+
+                }
+            }
+            xmlhttp.open("POST","/data/getArea/"+genre,true);
+            xmlhttp.send();
+        }else{
+            //alert(genre);
+            areas.innerHTML = "";
+            areas.innerHTML="<option><div style='text-align: center;'>----请选择----</div></option>";
+
+        }
+    }
+
+    var genre;//类型
+    var area;//地区
+
+    // document.getElementById("getTen").onclick = function () {
+    //     if(document.getElementById("genre").value!="0"){
+    //         document.getElementById("queryByAreaAndGenre").submit();
+    //     }else{
+    //         alert("请选择客户类型");
+    //     }
+    // };
+    //
+    // document.getElementById("getByPhone").onclick = function () {
+    //     if(document.getElementById("phone").value!=""){
+    //         document.getElementById("queryByPhone").submit();
+    //     }else{
+    //         alert("请选择客户类型");
+    //     }
+    // };
+
+
+</script>

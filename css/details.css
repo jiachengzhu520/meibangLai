@@ -1,0 +1,242 @@
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#fff;
+    font-size:1em;
+    font-family:"微软雅黑";
+}
+.container_fluid{
+    margin:0 auto;
+
+}
+.container-fluid:before{
+    content:'';
+    display:table;
+}
+.container_fluid .top_title{
+    width:1903px;
+    height:57px;
+    margin:0 auto;
+    background:#F7F7F8;
+}
+ /*针对pc 屏幕的媒体查询，屏幕宽度大于992*/
+@media screen and (min-width:992px){
+    body{
+        background: #fff;
+        font-size:16px;
+    }
+    .container_fluid{
+        width:1900px;
+        height:auto;
+        margin:0 auto;
+    }
+    .container_fluid .top_title{
+        width:100%;
+        height:57px;
+        margin-left:0;
+        background:#F7F7F8;
+    }
+    .container_fluid .top_title >p{
+        width:100%;
+        height:57px;
+        line-height:57px;
+        text-align:center;
+
+    }
+    .container_fluid .top_title >p a{
+        font-size:20px;
+        line-height:57px;
+        float:left;
+    }
+    .container_fluid .top_title >p span{
+        font-size:26px;
+        font-weight:bold;
+        color:#333;
+    }
+    /*标题下方的内容*/
+   .details_style{
+       width:100%;
+       height:auto;
+       border:1px solid #E1E1E1;
+
+   }
+    .details_style .title_style{
+        width:100%;
+        height:57px;
+        line-height:57px;
+        padding-left:15px;
+        font-size:26px;
+        background: #F4C277;
+        color:#333;
+    }
+    .details_style p{
+        width:98%;
+        height:67px;
+        border-bottom:1px solid #E1E1E1;
+        margin-left:20px;
+        line-height:57px;
+        font-size:16px;
+    }
+    .details_style p input{
+        width:80%;
+        height:65px;
+        float:right;
+        font-size:26px;
+        color:#333;
+
+    }
+    .details_style .phone_mobel input ,
+    .details_style .phone_gu input,
+    .details_style .z_phone input,
+    .details_style .bei_zu input
+    {
+        width:100%;
+    }
+    .details_style .bei_zu input{
+        background:#f5f5f5;
+    }
+    input{
+        outline:none;
+        border:none;
+
+    }
+    button{
+        display:none;
+    }
+    .details_style .bottom_bioji{
+        width:98%;
+        height:auto;
+        margin:0 auto;
+
+
+    }
+    .details_style .bottom_bioji p{
+        text-align:center;
+        line-height:45px;
+        border-radius:10px;
+        height:45px;
+        font-weight:bold;
+        font-size:20px;
+        border:1px solid #4CD964;
+        margin-bottom:20px;
+    }
+    .details_style .bottom_bioji ul{
+        margin:0 auto;
+        display:flex;
+        width:98%;
+        height:45px;
+        border:1px solid black;
+        border-radius:10px;
+        font-size:20px;
+
+    }
+    .details_style .bottom_bioji ul li:nth-child(1) {
+        width:50%;
+        height:45px;
+        line-height:45px;
+        text-align:center;
+        border-right:1px solid black;
+        color:red;
+    }
+    .details_style .bottom_bioji ul li:nth-child(2){
+        width:50%;
+        line-height:45px;
+        text-align:center;
+        color:#0894EC;
+        font-weight:bold;
+
+    }
+
+}
+/*针对pid 屏幕的媒体查询，屏幕宽度大于768-991*/
+
+/*针对phone 屏幕的媒体查询，屏幕宽度大于767*/
+@media screen and (max-width:767px){
+    body{
+        background: #fff;
+        font-size:16px;
+
+    }
+    .container_fluid .top_title{
+        width:100%;
+        height:44px;
+        margin:0 auto;
+
+    }
+
+    .container_fluid .top_title p{
+        width:100%;
+        height:44px;
+        line-height:44px;
+    }
+    .container_fluid .top_title p a{
+        width:20%;
+        height: 42px;
+    }
+    .container_fluid .top_title p span{
+        width:20%;
+        height:44px;
+        font-size:1.5em;
+        color:#333;
+        font-weight:bold;
+        margin-left:7rem;
+    }
+    .details_style{
+        border-radius:5px;
+        border:1px solid #E1E1E1;
+    }
+    .details_style .title_style{
+        width:100%;
+        border-radius:5px  5px 0 0;
+        padding-left:15px;
+        height:49px;
+        line-height:49px;
+        background:#F4C277;
+        font-weight:bold;
+        color:#333;
+    }
+    .details_style p{
+        width:98%;
+        height:60px;
+        float:right;
+        border-bottom:1px solid #E1E1E1;
+        line-height:60px;
+        padding-left:15px;
+        color:#333;
+    }
+    .details_style p input{
+        width:79%;
+        height:58px;
+        border:none;
+        outline:none;
+        float:right;
+        font-size:20px;
+        color:#333;
+    }
+    .details_style p button{
+        width:72px;
+        height:33px;
+        line-height:33px;
+        text-align:center;
+        border-radius:10px;
+        color:white;
+        font-weight:bold;
+        margin-left:0px;
+        border:none;
+        outline:none;
+        background:#0894EC;
+    }
+    .details_style .phone_mobel input,
+    .details_style .phone_gu input,
+    .details_style .z_phone input {
+       width:65%;
+        float:left;
+
+    }
+    .details_style .bei_zu input{
+        width:100%;
+        background:#f5f5f5;
+        float:left;
+    }
+
+}
